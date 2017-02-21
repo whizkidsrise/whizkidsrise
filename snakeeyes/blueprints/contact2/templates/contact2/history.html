@@ -1,0 +1,73 @@
+{% extends 'layouts/app.html' %}
+{% import 'macros/items.html' as items %}
+
+{% block title %}Initatives{% endblock %}
+
+{% block body %}
+  <h2>Initatives</h2>
+  {% if bets.total == 0 %}
+    <p>No bets found.</p>
+  {% else %}
+    <table class="table">
+      <thead>
+      <tr>
+        <th>Project Id</th>
+        <th>Description</th>
+        <th>Skills Required</th>
+        <th>Submitted By</th>
+        <th>Resource</th>
+        <th>WhizCoin</th>
+        <th>Department</th>
+        <th>Project Type</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Interesting Participants</th>
+        <th>Project Status</th>
+      </tr>
+      </thead>
+      <tbody>
+      {% for bet in bets.items %}
+        <tr>
+          <td>{{ bet.projectid }}</td>
+          <td>
+            {{ bet.description }}
+          </td>
+          <td>
+            {{ bet.skills }}
+          </td>
+          <td>
+            {{ bet.email }}
+          </td>
+          <td>
+            {{ bet.resource_email }}
+          </td>
+           <td>
+            {{ bet.whizcoin }}
+          </td>
+           <td>
+            {{ bet.department }}
+          </td>
+          <td>
+            {{ bet.protype }}
+          </td>
+           <td>
+            {{ bet.startdate }}
+          </td>
+           <td>
+            {{ bet.enddate }}
+          </td>
+           <td>
+            {{ bet.interesting_participants }}
+          </td>
+           <td>
+            {{ bet.project_status }}
+          </td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+
+    {{ items.paginate(bets) }}
+  {% endif %}
+  <hr/>
+{% endblock %}

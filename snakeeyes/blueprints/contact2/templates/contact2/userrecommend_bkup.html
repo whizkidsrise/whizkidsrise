@@ -1,0 +1,35 @@
+{% extends 'layouts/app.html' %}
+{% import 'macros/items.html' as items %}
+
+{% block title %}Recommender{% endblock %}
+
+{% block body %}
+  <div class="row column text-center">
+    <h2>Recommended Users</h2>
+    <hr>
+  </div>
+  {% if bets.total == 0 %}
+    <p>No bets found.</p>
+  {% else %}
+    <table class="table">
+      <thead>
+      <tr>
+        <th>Manager</th>
+        <th>Employee</th>
+      </tr>
+      </thead>
+      <tbody>
+      {% for bet in bets %}
+        <tr>
+          <td>{{ bet[0] }}</td>
+          <td>{{ bet[1] }}</td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+
+  {% endif %}
+  <hr/>
+{% endblock %}
+
+

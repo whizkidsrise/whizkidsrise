@@ -1,0 +1,104 @@
+{% extends 'layouts/app.html' %}
+
+{% block title %}Welcome to the journey of shared vision{% endblock %}
+{% block meta_description %}Start any initiative that is closer to your heart. Find the interested parties who are willing to contribute.{% endblock %}
+
+
+{% block body %}
+
+<style>
+
+.motivated {
+  background: #f6f6f6; /* For browsers that do not support gradients */
+  border-bottom: 1px solid #bbbbbb;
+  line-height: 8rem;
+  border-radius:.25rem;
+  height:150px;
+ 
+}
+ 
+.motivated:hover {
+   box-shadow: 3px 3px 3px #cfcfcf;
+}
+ 
+.aclass {     
+display: inline-block;     
+position: relative;    
+z-index: 1;     
+padding: 2em;     
+margin: -2em;
+ 
+}
+
+.col-centered{
+    float: none;
+    margin: 0 auto;
+}
+
+</style>
+
+
+  <div class="container sm-margin-top">
+    <div class="row text-center lg-margin-bottom">
+      <h1>Feeling Motivated?</h1>
+      <h4>Start an initiative closer to your heart. Find passionate colleagues willing to contribute.</h4>
+    </div>
+
+        <div class="row text-center lg-margin-bottom">
+        <div class="col-sm-12 col-md-1">
+        </div>
+            <div class="col-sm-12 col-md-2">
+                <div class="card centered">
+                    <div class="card-block motivated" >
+                        <h6 class="card-title">Start an Initiative</h6>
+                        <a class="aclass" href="{{ url_for('contact2.index') }}">
+                            <i class="fa fa-hourglass-start fa-3x" aria-hidden="true" style="color:#d9534f"></i>
+                        </a>
+                    </div><!--card-block-->
+                </div><!--card-->
+            </div><!--col-sm-12 col-md-2-->
+            <div class="col-sm-12 col-md-2">
+                <div class="card centered">
+                    <div class="card-block motivated">
+                        <h6 class="card-title">Participate</h6>
+                        <a class="aclass" href="{{ url_for('user2.signup') }}">
+                        <i class="fa fa-handshake-o fa-3x" aria-hidden="true" style="color:#d9534f"></i>
+                        </a>
+                    </div><!--card-block-->
+                </div><!--card-->
+            </div><!--col-sm-12 col-md-2-->
+            <div class="col-sm-12 col-md-2">
+                <div class="card centered">
+                    <div class="card-block motivated" style="line-height:6rem">
+                        <h6 class="card-title">Recommended Participants</h6>
+                        <a class="aclass" href="{{ url_for('contact2.recommendinit') }}">
+                        <i class="fa fa-thumbs-o-up fa-3x" aria-hidden="true" style="color:#d9534f"></i>
+                        </a>
+                    </div><!--card-block-->
+                </div><!--card-->
+            </div><!--col-sm-12 col-md-2-->
+            <div class="col-sm-12 col-md-2">
+                <div class="card centered">
+                    <div class="card-block motivated" style="line-height:6rem">
+                        <h6 class="card-title">Recommended Initiatives</h6>
+                        <a class="aclass" href="{{ url_for('contact2.recommendedprojects') }}">
+                        <i class="fa fa-thumbs-o-up fa-3x" aria-hidden="true" style="color:#d9534f;line-height:1rem"></i>
+                        </a>
+                    </div><!--card-block-->
+                </div><!--card-->
+            </div><!--col-sm-12 col-md-2-->
+            <div class="col-sm-12 col-md-2">
+                <div class="card centered">
+                    <div class="card-block motivated">
+                        <h6 class="card-title">Coins</h6>
+                        <a class="aclass" href="{{ url_for('contact2.thankyou') }}">
+                        <i class="fa fa-money fa-3x" aria-hidden="true" style="color:#d9534f"></i>
+                        </a>
+                    </div><!--card-block-->
+                </div><!--card-->
+            </div><!--col-sm-12 col-md-2-->
+        </div><!--row-->
+ 
+ </div>
+
+{% endblock %}

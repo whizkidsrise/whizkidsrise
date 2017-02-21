@@ -1,0 +1,50 @@
+{% extends 'layouts/app.html' %}
+{% import 'macros/items.html' as items %}
+
+{% block title %}Project history{% endblock %}
+
+{% block body %}
+  <h2>Project history</h2>
+  {% if bets.total == 0 %}
+    <p>No bets found.</p>
+  {% else %}
+    <table class="table">
+      <thead>
+      <tr>
+        <th>Date</th>
+        <th>Project Id</th>
+        <th>Description</th>
+        <th>Skills Required</th>
+        <th>Submitted By</th>
+      </tr>
+      </thead>
+      <tbody>
+      {% for bet in bets.items %}
+        <tr>
+          <td>
+            <time class="from-now"
+                  data-datetime="{{ bet.created_on }}">
+              {{ bet.created_on }}
+            </time>   
+          <td>{{ bet.projectid }}</td>
+          <td>
+            {{ bet.description }}
+          </td>
+          <td>
+            {{ bet.skills }}
+          </td>
+          <td>
+            {{ bet.email }}
+          </td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+
+    {{ items.paginate(bets) }}
+  {% endif %}
+  <hr/>
+  <a href="{{ url_for('user.settings') }}" class="margin-top btn btn-primary">
+    Go back to your account
+  </a>
+{% endblock %}

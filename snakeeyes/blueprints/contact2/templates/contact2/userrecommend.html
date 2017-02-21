@@ -1,0 +1,93 @@
+{% extends 'layouts/app.html' %}
+
+{% block body %}
+  <div class="row column text-center">
+    <h2>Recommended Participants</h2>
+    <hr>
+  </div>
+  {% if bets.total == 0 %}
+    <p>No bets found.</p>
+  {% else %}
+     {% for bet in bets %}
+        {% if bet[0] != prevbet %}
+        </div>
+       <div class="row small-up-2 large-up-4">
+          <div class="col-md-6">
+           <p>{{ bet[4] }}</p> 
+           <p>Common Interests are {{ bet[5] }}</p>          
+           <p>School: {{ bet[6] }}</p>          
+           <p>Grade: {{ bet[7] }}</p>          
+ <p>For more information contact <a href="mailto:{{ bet[5] }}">{{ bet[1] }}</a>
+           </p>
+           </div>
+           <div class="column">
+          <div class="col-md-6">
+            <div class="visible-xs visible-sm sm-margin-top"></div>
+            {% if bet[3] == 'E' %}
+            <a href="{{ url_for('contact2.assign_resource',projectid=bet[0],email=bet[1],action='E')}}"
+               class="btn btn-primary btn-default btn-block">
+              Endorse
+            </a>
+            {% else %}            
+            {% if bet[2] != 'X' %}
+            <a href="{{ url_for('contact2.assign_resource',projectid=bet[0],email=bet[1],action='I')}}"
+               class="btn btn-default btn-block">
+              Interested
+            </a>
+            {% else %}
+            <a href="{{ url_for('contact2.assign_resource',projectid=bet[0],email=bet[1],action='A')}}"
+               class="btn btn-default btn-block">
+              Accept
+            </a>
+            <a href="{{ url_for('contact2.assign_resource',projectid=bet[0],email=bet[1],action='R')}}"
+               class="btn btn-default btn-block">
+              Reject
+            </a>            
+            {% endif %}
+            {% endif %}
+          </div>
+           </div>
+        {% else %}
+           <div class="col-md-6">
+          <p>{{ bet[4] }}</p>  
+           <p>Matching Skills are {{ bet[5] }}</p>          
+           <p>Department is {{ bet[6] }}</p>          
+           <p>Interested in {{ bet[7] }}</p>                  
+          <p>For more information contact <a href="mailto:{{ bet[5] }}">{{ bet[1] }}</a>
+           </p>
+           </div>
+           <div class="column">
+            <div class="col-md-6">
+            <div class="visible-xs visible-sm sm-margin-top"></div>
+            {% if bet[3] == 'E' %}
+            <a href="{{ url_for('contact2.assign_resource',projectid=bet[0],email=bet[1],action='E')}}"
+               class="btn btn-default btn-block">
+              Endorse
+            </a>
+            {% else %}          
+            {% if bet[2] != 'X' %}
+            <a href="{{ url_for('contact2.assign_resource',projectid=bet[0],email=bet[1],action='I') }}"
+               class="btn btn-default btn-block">
+              Interested
+            </a>
+            {% else %}
+            <a href="{{ url_for('contact2.assign_resource',projectid=bet[0],email=bet[1],action='A') }}"
+               class="btn btn-default btn-block">
+              Accept
+            </a>
+            <a href="{{ url_for('contact2.assign_resource',projectid=bet[0],email=bet[1],action='R') }}"
+               class="btn btn-default btn-block">
+              Reject
+            </a>            
+            {% endif %}
+            {% endif %}
+        </div>
+           </div>
+        {% endif %}
+      {% set prevbet = bet[0] %}
+    {% endfor %}
+  {% endif %}
+  <hr/>
+{% endblock %}
+
+

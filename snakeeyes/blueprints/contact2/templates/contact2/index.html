@@ -1,0 +1,60 @@
+{% extends 'layouts/app.html' %}
+{% import 'macros/form.html' as f with context %}
+
+{% block title %}Start an Initative{% endblock %}
+{% block meta_description %}Contact our customer service department with any
+questions or concerns.{% endblock %}
+
+{% block body %}
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2 well">
+      {% call f.form_tag('contact2.index') %}
+        <legend>Submit your Initiative</legend>
+
+        {% call f.form_group(form.department, css_class='margin-bottom',
+                             placeholder='Department') %}
+        {% endcall %}
+
+        {% call f.form_group(form.protype, css_class='margin-bottom',
+                             placeholder='Project Type') %}
+        {% endcall %}
+
+
+        {% call f.form_group(form.email, css_class='margin-bottom',
+                             placeholder='Contact Email') %}
+        {% endcall %}
+
+        {% call f.form_group(form.projectid, css_class='margin-bottom',
+                             placeholder='Project Name') %}
+        {% endcall %}
+
+        {% call f.form_group(form.description, css_class='margin-bottom',
+                             placeholder='Please provide description of this Initiative',
+                             rows='4') %}
+        {% endcall %}
+
+        {% call f.form_group(form.skills, css_class='margin-bottom',
+                             placeholder='Optional',
+                             rows='1') %}
+        {% endcall %}
+
+        <div class="row">
+          <div class="col-md-6">
+        Start Date
+    {{ form.startdate(class_='datepicker') }}
+    {{ form.hidden_tag() }}
+          </div>
+          <div class="col-md-6">
+        End Date
+    {{ form.enddate(class_='datepicker') }}
+    {{ form.hidden_tag() }}
+    </div>
+        <div class="row">
+          <div class="col-md-6 col-md-push-1 col-md-offset-2 well">
+        <button type="submit" class="btn btn-primary">Submit</button>
+          </div>
+        </div>
+      {% endcall %}
+    </div>
+  </div>
+{% endblock %}

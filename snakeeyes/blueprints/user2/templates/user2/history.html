@@ -1,0 +1,65 @@
+{% extends 'layouts/app.html' %}
+{% import 'macros/items.html' as items %}
+
+{% block title %}Participants{% endblock %}
+
+{% block body %}
+  <h2>Participants</h2>
+  {% if bets.total == 0 %}
+    <p>No bets found.</p>
+  {% else %}
+    <table class="table">
+      <thead>
+      <tr>
+        <th>Email</th>
+        <th>Skills</th>
+        <th>WhizCoin</th>
+        <th>Department</th>
+        <th>Project Type</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Interesting Projects</th>
+        <th>Current Project</th>
+      </tr>
+      </thead>
+      <tbody>
+      {% for bet in bets.items %}
+          <td>
+            {{ bet.email }}
+          </td>
+          <td>
+            {{ bet.skills }}
+          </td>
+           <td>
+            {{ bet.whizcoin }}
+          </td>
+           <td>
+            {{ bet.department }}
+          </td>
+          <td>
+            {{ bet.protype }}
+          </td>
+           <td>
+            {{ bet.startdate }}
+          </td>
+           <td>
+            {{ bet.enddate }}
+          </td>
+           <td>
+            {{ bet.interesting_projects }}
+          </td>
+           <td>
+            {{ bet.current_project }}
+          </td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+
+    {{ items.paginate(bets) }}
+  {% endif %}
+  <hr/>
+  <a href="{{ url_for('user.settings') }}" class="margin-top btn btn-primary">
+    Go back to your account
+  </a>
+{% endblock %}

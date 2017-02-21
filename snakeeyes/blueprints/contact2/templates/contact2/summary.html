@@ -1,0 +1,119 @@
+{% block body %}
+
+{% block title %}Summary{% endblock %}
+
+<style>
+html, body { height: 100%; padding: 0; margin: 0; }
+
+div { width: 50%; height: 50%; float: left; }
+#div1 { background: #DDD; }
+#div2 { background: #AAA; }
+#div3 { background: #777; }
+#div4 { background: #444; }
+</style>
+
+<div id="div1">
+
+<br>
+<br>
+
+<p>WhizCoins used by your organization!</p>
+
+<style>
+
+progress {
+  -webkit-appearance: none;
+}
+
+::-webkit-progress-bar {
+   background-color: orange;
+}
+
+
+</style>
+
+<progress value="100" max="1000">
+
+</div>
+
+<div id="div2">
+
+<br>
+<br>
+
+<p>WhizPoints that you earned!</p>
+
+<style>
+
+progress {
+  -webkit-appearance: none;
+}
+
+::-webkit-progress-bar {
+   background-color: orange;
+}
+
+</style>
+
+  {% if participants.total == 0 %}
+
+  {% else %}
+
+   {% for participant in participants %}
+
+<progress value="{{ participant[1] - 1000 }}" max="1000">
+
+   {% endfor %}
+
+     {% endif %}
+
+</div>
+
+<div id="div4">
+
+<br>
+<br>
+
+<p>Find the participants interested in your initatives!</p>
+
+  {% if bets.total == 0 %}
+
+  {% else %}
+
+   {% for bet in bets %}
+
+   <a href ="{{ url_for('contact2.recommendme',projectid=bet[0]) }}">{{ bet[0] }}</a>
+   <br>
+   <br>
+
+   {% endfor %}
+
+     {% endif %}
+
+</div>
+
+<div id="div3">
+<br>
+<br>
+<p>Find the initiatives available exclusively for you!</p>
+
+  {% if participants.total == 0 %}
+
+  {% else %}
+
+   {% for participant in participants %}
+
+   <a href ="{{ url_for('user2.recommendprj',email=participant[0]) }}">{{ participant[0] }}</a>
+   <br>
+   <br>
+
+   {% endfor %}
+
+     {% endif %}
+
+
+</div>
+
+
+
+{% endblock %}

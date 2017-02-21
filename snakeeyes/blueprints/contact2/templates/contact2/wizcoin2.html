@@ -1,0 +1,105 @@
+﻿{% extends 'layouts/app.html' %}
+    
+
+{% block body %}
+
+<style>
+
+.container-fluid .card {
+    margin-top:0px;
+    height:400px;
+    background-color:#f6f6f6;
+    border:0;
+}
+ul {
+    list-style-type: none;
+}
+
+ul a:hover {
+    color: #ff0000;
+}
+
+.centered
+{
+    text-align:center;
+}
+
+.btn-position {
+
+    position:relative;
+    left:30px;
+    top:30px;
+}
+
+.verticalLine {
+    position:relative;
+    width:10px;
+    height:200px;
+    background-color:#bce25f;
+    text-align:center;
+    padding: 10px 10px 10px 10px;
+    margin-top: 20px;
+    margin-left: 143px;
+    margin-bottom: 20px;
+}
+.verticalLine2 {
+    position:absolute;
+    top:45px;
+    width:10px;
+    height:44px;
+    background-color:#ffac71;
+    text-align:center;
+    padding: 10px 10px 10px 10px;
+    margin-top: 20px;
+    margin-left: 143px;
+    margin-bottom: 20px;
+    z-index:auto;
+}
+
+.marker {
+    position:relative;
+    top:50px;
+    left: 10px;
+    width:100px;
+    display: inline-block;
+    
+}
+
+.fa   {
+    padding-right:6px;
+    vertical-align:middle;
+    color:#6c6c6c;
+}
+
+</style>
+
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12 col-md-4 col-lg-4">
+                <div class="card centered">
+                    <div class="card-block">
+                        <h4 class="card-title">Find the participants interested in your initiatives</h4>
+                        <ul>
+  {% if bets.total == 0 %}
+
+  {% else %}
+
+   {% for bet in bets %}
+
+                            <li>
+                                <a href="{{ url_for('contact2.recommendme',projectid=bet[0]) }}">{{ bet[0] }}</a>
+                            </li>
+
+
+   {% endfor %}
+
+     {% endif %}
+
+                        </ul>
+                    </div><!--card-block-->
+                </div><!--card-->
+            </div><!--col-sm-12 col-md-4 col-lg-4-->
+        </div><!--row-->
+    </div><!--container-->
+{% endblock %}

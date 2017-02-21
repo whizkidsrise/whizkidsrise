@@ -1,0 +1,104 @@
+{% extends 'layouts/app.html' %}
+
+{% block body %}
+  <div class="row column text-center">
+    <h2>Recommended Projects</h2>
+    <hr>
+  </div>
+  {% if bets.total == 0 %}
+    <p>No bets found.</p>
+  {% else %}
+     {% for bet in bets %}
+        {% if bet[0] != prevbet %}
+        </div>
+        <div class="row small-up-2 large-up-4">
+          <div class="column">
+           <p>{{ bet[0] }}</p>
+           <p>{{ bet[4] }}</p>
+           <p>For more information contact <a href="mailto:{{ bet[5] }}">{{ bet[5] }}</a>
+           </p>
+           </div>
+          <div class="column">
+          <div class="col-md-6 navbar-right">
+            <div class="visible-xs visible-sm sm-margin-top"></div>
+            {% if bet[2] == 'C' %} 
+            <a href="{{ url_for('user2.assign_project',projectid=bet[0],email=bet[1],action='S')}}"
+               class="btn btn-default btn-block">
+              Start
+            </a>
+            <a href="{{ url_for('user2.assign_project',projectid=bet[0],email=bet[1],action='W')}}"
+               class="btn btn-default btn-block">
+              Withdraw
+            </a>
+            {% else %}
+            {% if bet[2] != 'X' %}
+            {% if bet[3] != 'X' %}
+            <a href="{{ url_for('user2.assign_project',projectid=bet[0],email=bet[1],action='I')}}"
+               class="btn btn-default btn-block">
+              Interested
+            </a>
+            {% else %}
+            <p> Thank you for your interest! Initatior will contact you soon.</p>
+            {% endif %}
+            {% else %}
+            <a href="{{ url_for('user2.assign_project',projectid=bet[0],email=bet[1],action='A')}}"
+               class="btn btn-default btn-block">
+              Accept
+            </a>
+            <a href="{{ url_for('user2.assign_project',projectid=bet[0],email=bet[1],action='R')}}"
+               class="btn btn-default btn-block">
+              Reject
+            </a>            
+            {% endif %}
+            {% endif %}
+          </div>
+           </div>
+           </div>
+        {% else %}
+           <div class="column">
+           <p>{{ bet[1] }}</p>
+           </div>
+          <div class="column">
+          <div class="col-md-6 navbar-right">
+            <div class="visible-xs visible-sm sm-margin-top"></div>
+            {% if bet[2] == 'C' %} 
+            <a href="{{ url_for('user2.assign_project',projectid=bet[0],email=bet[1],action='S')}}"
+               class="btn btn-default btn-block">
+              Start
+            </a>
+            <a href="{{ url_for('user2.assign_project',projectid=bet[0],email=bet[1],action='W')}}"
+               class="btn btn-default btn-block">
+              Withdraw
+            </a>
+            {% else %}
+            {% if bet[2] != 'X' %}
+            {% if bet[3] != 'X' %}
+            <a href="{{ url_for('user2.assign_project',projectid=bet[0],email=bet[1],action='I')}}"
+               class="btn btn-default btn-block">
+              Interested
+            </a>
+            {% else %}
+            <p> Thank you for your interest! Initatior will contact you soon.</p>
+            {% endif %}
+            {% else %}
+            <a href="{{ url_for('user2.assign_project',projectid=bet[0],email=bet[1],action='A')}}"
+               class="btn btn-default btn-block">
+              Accept
+            </a>
+            <a href="{{ url_for('user2.assign_project',projectid=bet[0],email=bet[1],action='R')}}"
+               class="btn btn-default btn-block">
+              Reject
+            </a>            
+            {% endif %}
+            {% endif %}
+        </div>
+           </div>
+           </div>
+        {% endif %}
+      {% set prevbet = bet[0] %}
+    {% endfor %}
+  {% endif %}
+  <hr/>
+{% endblock %}
+
+
